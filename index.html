@@ -1,0 +1,122 @@
+
+<html>
+    <head>
+        <meta charset="utf-8"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.9.1/underscore-min.js" type="text/javascript"></script>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+        <style>
+
+            body {
+                font-family: 'Roboto', sans-serif;
+            }
+
+            table {
+                border-spacing: 0;
+                width: 100%;
+            }
+
+            th, td {
+                padding: 5px;
+                margin: 0;
+                border-top: 1px solid #ddd;
+            }
+
+            .colored tr:nth-child(even) {background-color: #f2f2f2;}
+
+            .scrollTable {
+                margin-top: 10px;
+                max-height: 300px;
+                overflow: scroll;
+                border: solid 1px #ddd;
+            }
+
+            .spinner {
+                margin: 100px auto 0;
+                width: 70px;
+                text-align: center;
+            }
+
+            .spinner > div {
+                width: 18px;
+                height: 18px;
+                background-color: #333;
+
+                border-radius: 100%;
+                display: inline-block;
+                -webkit-animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+                animation: sk-bouncedelay 1.4s infinite ease-in-out both;
+            }
+
+            .spinner .bounce1 {
+                -webkit-animation-delay: -0.32s;
+                animation-delay: -0.32s;
+            }
+
+            .spinner .bounce2 {
+                -webkit-animation-delay: -0.16s;
+                animation-delay: -0.16s;
+            }
+
+            @-webkit-keyframes sk-bouncedelay {
+                0%, 80%, 100% { -webkit-transform: scale(0) }
+                40% { -webkit-transform: scale(1.0) }
+            }
+
+            @keyframes sk-bouncedelay {
+                0%, 80%, 100% { 
+                    -webkit-transform: scale(0);
+                    transform: scale(0);
+                } 40% { 
+                    -webkit-transform: scale(1.0);
+                    transform: scale(1.0);
+                }
+            }
+
+            #display {
+                padding: 10px;
+                width: 80%;
+                margin: auto;
+            }
+
+            #multiInfoTable {
+                font-family: 'Courier New', Courier, monospace;
+            }
+
+            #logTable {
+                font-family: 'Courier New', Courier, monospace;
+            }
+
+        </style>
+    </head>
+    <body>
+        <input type="file" id="files" name="files[]" multiple />
+        <div style="display:none" id="loading">
+            <div class="spinner">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+            </div>
+        </div>
+        <div style="display:none" id="display">
+            <div id="info">
+                <h2>Info:</h2>
+                <div class="scrollTable">
+                        <table class="colored" id="infoTable"></table>
+                </div>
+                <div class="scrollTable">
+                    <table id="multiInfoTable"></table>
+                </div>
+                <h2>Logs:</h2>
+                <div class="scrollTable">
+                    <table id="logTable"></table>
+                </div>
+                <h2 id="dropouts">Droupouts: <span id="numDropouts">_</span> (<span id="dropoutTime"></span>s)</h2>
+            </div>
+            <div id="graphs"></div>
+        </div>
+        
+        <script src="./read.js" type="text/javascript"></script>
+        <script src="./display.js" type="text/javascript"></script>
+    </body>
+</html>
